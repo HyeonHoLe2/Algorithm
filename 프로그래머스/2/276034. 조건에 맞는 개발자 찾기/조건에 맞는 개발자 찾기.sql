@@ -1,5 +1,6 @@
 -- 코드를 작성해주세요
 SELECT distinct id, email, first_name, last_name 
-FROM developers
-WHERE (skill_code & 1024) != 0 or (skill_code & 256 ) != 0
+FROM developers de JOIN skillcodes sk ON 
+(sk.CODE & de.SKILL_CODE) > 0
+WHERE sk.name in ('Python', 'C#')
 ORDER BY id;
