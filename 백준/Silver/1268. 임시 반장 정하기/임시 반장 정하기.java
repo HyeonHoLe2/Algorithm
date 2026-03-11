@@ -6,37 +6,36 @@ public class Main{
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         
-        int[][] arr = new int[n][5];
+        int arr[][] = new int[n][5];
         
         for(int i=0;i<n;i++){
             for(int j=0;j<5;j++){
                 arr[i][j] = sc.nextInt();
             }
         }
+        
+        int same[] = new int[n];
+        
+        for(int line=0; line<n; line++){
+            for(int j=0; j<n; j++){
+                if(line == j) continue;
 
-        int max = 0;
-        int result = 0;
-
-        for(int i=0;i<n;i++){
-            int count = 0;
-
-            for(int j=0;j<n;j++){
-                if(i == j) continue;
-
-                for(int k=0;k<5;k++){
-                    if(arr[i][k] == arr[j][k]){
-                        count++;
+                for(int i=0; i<5; i++){
+                    if(arr[line][i] == arr[j][i]){
+                        same[line]++;
                         break;
                     }
                 }
             }
+        }
 
-            if(count > max){
-                max = count;
-                result = i;
+        int maxIndex = 0;
+        for(int i=1; i<n; i++){
+            if(same[i] > same[maxIndex]){
+                maxIndex = i;
             }
         }
 
-        System.out.println(result + 1);
+        System.out.print(maxIndex + 1);
     }
 }
