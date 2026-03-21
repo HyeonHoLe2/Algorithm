@@ -1,29 +1,37 @@
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.Scanner;
 
-public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+import java.util.*;
+
+
+
+public class Main{
+
+    public static void main(String[] args){
+
         
+
+        Scanner sc= new Scanner(System.in);
+
         int n = sc.nextInt();
-        
+
         Deque<Integer> deque = new ArrayDeque<>();
-        
-        for (int i = 1; i <= n; i++) {
-            deque.offer(i);
+
+        for(int i =1;i<=n;i++){
+            deque.push(i);
         }
-        
-        while (deque.size() > 1) {
-            deque.poll(); 
+
+    
+
+       while(deque.size()>1){
+
+            int value = 0;
+
+   
+            deque.pollLast();
             
-            if (!deque.isEmpty()) {
-                deque.offer(deque.poll());
-            }
-        }
+            value = deque.pollLast();
+            deque.push(value);
         
-        System.out.println(deque.poll());
-        
-        sc.close();
+       }
+        System.out.print(deque.pollLast());
     }
 }
